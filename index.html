@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="calci">
+        <input id="display" />
+        <div class="allbuttons">
+            <div class="mycol">
+                <div class="row">
+                    <button class="bt bt1" onclick="addtodisplay('CE')">CE</button>
+
+                    <button class="bt bt1" onclick="addtodisplay('()')">( )</button>
+
+                    <button class="bt bt1" onclick="addtodisplay('%')">%</button>
+                </div>
+
+                <div class="row">
+                    
+                    <button class="bt bt2" onclick="addtodisplay('7')">7</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('8')">8</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('9')">9</button>
+                </div>
+
+                <div class="row">
+                   
+                    <button class="bt bt2" onclick="addtodisplay('4')">4</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('5')">5</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('6')">6</button>
+                </div>
+
+                <div class="row">
+                    
+                    <button class="bt bt2" onclick="addtodisplay('1')">1</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('2')">2</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('3')">3</button>
+                </div>
+
+                <div class="row">
+                    
+                    <button class="bt bt2" onclick="addtodisplay('0')">0</button>
+
+                    <button class="bt bt2" onclick="addtodisplay('.')">.</button>
+                    <button class="bt bt3" onclick="addtodisplay('x')">x</button>
+                </div>
+
+            </div>
+            <div class="mycol">
+               
+                <button class="bt bt3" onclick="addtodisplay('/')">/</button>
+
+                <button class="bt bt3" onclick="addtodisplay('*')">*</button>
+
+                <button class="bt bt3" onclick="addtodisplay('-')">-</button>
+
+                <button class="bt bt3" onclick="addtodisplay('+')">+</button>
+
+                <button class="bt bt3" onclick="addtodisplay('=')">=</button>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+
+<script>
+    let bracket = 0;
+    let display = document.getElementById("display");
+    display.value = "0";
+
+    const addtodisplay = (myval) => {
+        if(display.value == "0"){
+            display.value = "";
+        }
+        if (myval == "CE") {
+            display.value = "0";
+        }
+        else if (myval == "x") {
+            display.value = display.value.slice(0, -1)
+        }
+        else if (myval == "()") {
+
+            if (bracket == 0) {
+                display.value += "(";
+                bracket = 1;
+            }
+            else if (bracket == 1) {
+                display.value += ")";
+                bracket = 0;
+            }
+        }
+        else if (myval == "=") {
+    
+            try {
+                display.value = eval(display.value);
+            }
+            catch {
+                display.value = "Error";
+            }
+        }
+        else {
+            
+            console.log(myval);
+            display.value = display.value + myval;
+        }
+
+    }
+</script>
+
+</html>
